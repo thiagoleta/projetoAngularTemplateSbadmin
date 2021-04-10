@@ -8,6 +8,9 @@ import { ConsultaClientesComponent } from './consulta-clientes/consulta-clientes
 //importando as classes para uso da biblioteca de rotas do angular
 //estas rotas serão utilizadas para navegação da SPA - Single Page Application
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 //mapear uma rota (URL) para cada componente do projeto..
 const routes : Routes = [
@@ -23,7 +26,10 @@ const routes : Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes) //registrando a configuração de rotas!
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes), //registrando a configuração de rotas!
   ],
   providers: [],
   bootstrap: [AppComponent]
