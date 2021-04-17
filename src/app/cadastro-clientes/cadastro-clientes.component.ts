@@ -13,6 +13,11 @@ export class CadastroClientesComponent implements OnInit {
   mensagem_sucesso: string;
   mensagem_erro: string;
 
+  //capturar as mensagens de erro de validação da API
+  errors = {
+    Cpf: [], Email: [], Nome: []
+  }
+
   //declarando uma variavel chamada httpClient por meio de
   //injeção de dependência (variavel será inicializada automaticamente)
   constructor(private httpClient: HttpClient) { }
@@ -30,6 +35,7 @@ export class CadastroClientesComponent implements OnInit {
 
     //enviando uma requisição HTTP POST para uma API..
     this.httpClient.post(environment.apiUrl + '/api/clientes', request)
+
       .subscribe( //capturando o PROMISSE da API (resposta )
         (data: any) => { //sucesso!
 
@@ -40,12 +46,12 @@ export class CadastroClientesComponent implements OnInit {
           formCadastro.form.reset();
         },
         e => { //erro!
-          
+
           //verificando qual o status de 
           //erro foi retornado pela API..
-          switch(e.status){
+          switch (e.status) {
             case 400: //BAD REQUEST
-              this.mensagem_erro = "Ocorreram erros de validação no preenchimento do formulário";
+              this.errors = e.error.errors;
               break;
 
             case 403: //FORBIDDEN
@@ -58,15 +64,19 @@ export class CadastroClientesComponent implements OnInit {
           }
 
         }
+
       )
 
   }
 
   //função para limpar as mensagens do formulário
-  limparMensagens() : void {
+  limparMensagens(): void {
+
     this.mensagem_sucesso = '';
     this.mensagem_erro = '';
   }
 
 }
+
+
 

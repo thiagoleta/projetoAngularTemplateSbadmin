@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 //mapear uma rota (URL) para cada componente do projeto..
 const routes : Routes = [
@@ -29,6 +30,7 @@ const routes : Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RouterModule.forRoot(routes), //registrando a configuração de rotas!
   ],
   providers: [],
