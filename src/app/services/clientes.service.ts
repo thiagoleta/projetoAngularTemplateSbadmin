@@ -37,4 +37,9 @@ export class ClientesService {
   getById(idCliente) {
     return this.httpClient.get(this.url + "/" + idCliente);
   }
+
+  //função para executar uma chamada GET para o serviço de historico
+  getHistorico(){
+    return this.httpClient.get(this.url + "/historico");
+  }
 }

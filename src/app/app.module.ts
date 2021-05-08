@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CadastroClientesComponent } from './cadastro-clientes/cadastro-clientes.component';
 import { ConsultaClientesComponent } from './consulta-clientes/consulta-clientes.component';
+import { PainelPrincipalComponent } from './painel-principal/painel-principal.component'
 
 //importando as classes para uso da biblioteca de rotas do angular
 //estas rotas serão utilizadas para navegação da SPA - Single Page Application
@@ -17,12 +18,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 // importando o modulo de configuração da mascara
-import {NgxMaskModule, IConfig} from 'ngx-mask'
+import {NgxMaskModule, IConfig} from 'ngx-mask';
+
+import {ChartModule} from 'angular-highcharts';
+
 
 //mapear uma rota (URL) para cada componente do projeto..
 const routes : Routes = [
   { path : 'cadastro-clientes', component : CadastroClientesComponent },
-  { path : 'consulta-clientes', component : ConsultaClientesComponent }
+  { path : 'consulta-clientes', component : ConsultaClientesComponent },
+  { path : '', component : PainelPrincipalComponent }
 ];
 
 //configuração para inicialização do NgxMask
@@ -31,7 +36,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   declarations: [
     AppComponent,
     CadastroClientesComponent,
-    ConsultaClientesComponent
+    ConsultaClientesComponent,
+    PainelPrincipalComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgxMaskModule.forRoot(), //registrando biblioteca NgxMask
+    ChartModule, //registrando ChartModule
     RouterModule.forRoot(routes), //registrando a configuração de rotas!
   ],
   providers: [],
