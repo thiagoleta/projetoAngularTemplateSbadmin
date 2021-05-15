@@ -22,6 +22,12 @@ import {NgxMaskModule, IConfig} from 'ngx-mask';
 
 import {ChartModule} from 'angular-highcharts';
 
+import {} from '@angular/common/http';
+
+//importando os interceptors
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './_interceptors/TokenInterceptor';
+
 
 //mapear uma rota (URL) para cada componente do projeto..
 const routes : Routes = [
@@ -50,7 +56,13 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ChartModule, //registrando ChartModule
     RouterModule.forRoot(routes), //registrando a configuração de rotas!
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
